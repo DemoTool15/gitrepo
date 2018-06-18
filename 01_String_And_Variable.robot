@@ -29,7 +29,7 @@ TC02_Minus
 
 TC04_Array
     [Tags]    TC04    Array
-    ${Result}    Evaluate    @{Array}[0] + @{Array}[2]
+    ${Result}    Evaluate    @{Array}[0] + @{Array}[1]
     Log To Console    @{Array}[0] + @{Array}[1] = ${Result}
 
 TC05_DataDictionary
