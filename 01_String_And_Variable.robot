@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation     Example String & Variable
 Suite Setup       Log To Console    \n\t    Start Code String and Variable
+Force Tags        Demo Smoke Test
 Test Timeout      30 seconds
 Library           Selenium2Library
 Library           Collections
@@ -54,6 +55,7 @@ Create_Array
 String Example
     [Documentation]    String Example
     [Tags]    String
+
     ${str}=    Set Variable    ID Card 99999
     Log To Console    \n\t str=${str}
 
@@ -63,8 +65,12 @@ String Example
     Log To Console    ${StrLine}
     Log To Console    String Variable = '${Str}'
 
-    # String Convert Uppercase & Lowercase
+#------------------------------------------------------------------------------------#
+
+    # String Set Variable for Example
     ${str}=    Set Variable    Robot Framework is Easy
+
+    # Convert Uppercase & Lowercase
     ${strEX_UpperCase}    Convert To Uppercase    ${str}
     Log To Console    \n\t String [${str}] Convert To UpperCase = [${strEX_UpperCase}]
 
