@@ -12,11 +12,10 @@ Resource          Keyword/General_Keyword.robot
 *** Test Cases ***
 MercuryTour Login
     [Documentation]    XPath WorkShop    Mercury Tour Login
-    ...    Link : \ http://newtours.demoaut.com/
     [Timeout]    5 minutes
     Set Selenium Speed    3s
-    Run Keyword    OpenWebURL    http://newtours.demoaut.com/
-    Sleep    5s
+    Open Browser    http://newtours.demoaut.com    browser=chrome
+    Maximize Browser Window
     Page Should Contain Element    //td/input[@name="userName"]
     ${Get_Element}    Get Text    //font[contains(.,'Password:')]
     Log To Console    \n\t Get Element Label Password = ${Get_Element}
@@ -48,7 +47,8 @@ MercuryTour Login
 
 WLS
     [Documentation]    XPath WorkShop    WeloveShopping
-    Run Keyword    OpenWebURL    https://portal.weloveshopping.com/
+    Open Browser    https://portal.weloveshopping.com/    browser=chrome
+    Maximize Browser Window
     Sleep    3s
     Page Should Contain Element    //a[@title='เข้าสู่ระบบ']
     Page Should Contain    เข้าสู่ระบบ
@@ -63,9 +63,11 @@ WLS
     Page Should Contain    Deal Zapp
 
     #Click Product in DealZap Category 'แฟชั่น'
-    Focus    //a[@class='item-name' and contains(.,'บราผีเสื้อ บราปีกผีเสื้อ บราไร้สาย บรากาว')]
-    Click Link    //a[@class='item-name' and contains(.,'บราผีเสื้อ บราปีกผีเสื้อ บราไร้สาย บรากาว')]
-    #Click Link    //a[@class='item-name' and contains(.,'Mango Wallet')]
+    #Focus    //a[@class='item-name' and contains(.,'บราผีเสื้อ บราปีกผีเสื้อ บราไร้สาย บรากาว')]
+    #Fail Click product step because Product now show in menu DealZap
+    #Click Link    //a[@class='item-name' and contains(.,'บราผีเสื้อ บราปีกผีเสื้อ บราไร้สาย บรากาว')]
+    Click Link    //li[1]//a[@class='item-name']
+    #Click Link    //li[1]/div/a[@class='item-name']
 
     Page Should Contain    ดูรายละเอียด
     Focus    //a[@class='cursor-pointer' and contains(.,'ดูรายละเอียด')]
@@ -82,17 +84,17 @@ WLS
     Focus    //button[@class='btn']
 
 kingpower
-    [Documentation]    XPath kingpower    WeloveShopping Login
-    Open Browser    https://www.kingpower.com/    Chrome
+    [Documentation]    XPath WorkShop    KingPower
+    Open Browser    https://www.kingpower.com/    gc
     Maximize Browser Window
     Set Selenium Speed    2s
     Sleep    3s
-    Input Text    header-input-text-search    perfume
+    Input Text    //input[@class="react-autosuggest__input"]    perfume
     Click Element    header-search-box-button
     Wait Until Page Contains    perfume
     Sleep    3s
-    Input Text    //*[@id="header-search-box-input-text"]    swatch
+    Input Text    //input[@class="react-autosuggest__input"]    swatch
     Click Element    //*[@id="header-search-box-button"]
     Wait Until Page Contains    swatch
     Sleep    3s
-    [Teardown]    Close Browser
+    #[Teardown]    Close Browser
